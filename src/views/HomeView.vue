@@ -13,7 +13,7 @@
       </div>
       <form class="login-form">
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">Email or Phone Number</label>
           <input
             type="email"
             id="email"
@@ -26,7 +26,7 @@
           <label for="password">Password</label>
           <div class="password-field">
             <input
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
               id="password"
               v-model="password"
               class="input-field"
@@ -36,6 +36,8 @@
               <i
                 @mousedown="showPassword = true"
                 @mouseup="showPassword = false"
+                @touchstart="showPassword = true"
+                @touchend="showPassword = false"
                 class="eye-icon fas"
                 :class="{
                   'fa-eye-slash': !showPassword,
@@ -48,7 +50,6 @@
         <div class="submit">
           <button type="submit" class="submit-button">Login</button>
           <i class="eye-icon fas fa-arrow-right"></i>
-          <!-- <span @click="handleSubmit" class="arrow-icon"> 👁️ </span> -->
         </div>
       </form>
     </div>
@@ -72,7 +73,6 @@ export default {
 <style>
 body {
   margin: 0;
-  /* margin-left: 0; */
   font-family: "Raleway";
 }
 .landing-page {
@@ -99,7 +99,7 @@ body {
 .text-overlay {
   position: absolute;
   bottom: 20px;
-  left: 20px;
+  margin-left: 6em;
   font-weight: 700;
   font-size: 15px;
 }
@@ -121,7 +121,6 @@ body {
 .login-header h1 {
   font-size: 36px;
   font-weight: 700;
-  font-size: 36px;
 }
 .login-header p {
   font-size: 14px;
@@ -156,24 +155,26 @@ body {
   padding: 10px;
   border: 1px solid #ccc;
   text-shadow: 0 0 0 #000;
-  font-family: inherit; /* Match font with label */
-  font-size: inherit; /* Match font size with label */
-  padding-left: 3em; /* Shift input text to the right */
+  font-family: inherit;
+  font-size: inherit;
+  padding-left: 3em;
 }
 .input-field::placeholder {
-  color: #ccc; /* Placeolder color */
-  opacity: 1; /* Ensures placeholder is visible */
-  font-family: inherit; /* Match font with label */
-  font-size: 1.3em; /* Match font size with label */
-  padding-left: 0em; /* Shift input text to the right */
+  color: #ccc;
+  opacity: 1;
+  font-family: inherit;
+  font-size: 1.3em;
+  padding-left: 0em;
 }
 .input-field :focus ::placeholder {
-  color: #ffffff; /* Hides placeholder on focus */
+  color: #ffffff;
 }
 .password-field {
   position: relative;
 }
-
+.password-field.input-field ::placeholder {
+  margin-top: 5em;
+}
 .eye-icon {
   position: absolute;
   right: -1em;
@@ -185,14 +186,9 @@ body {
   position: relative;
   margin-top: 7em;
 }
-.arrow-icon {
-  position: absolute;
-  right: 10px;
-  top: 3em;
-  cursor: pointer;
-}
+
 .submit-button {
-  width: 102%;
+  width: 111%;
   height: 4.2em;
   border-radius: 4em;
   padding: 3px;
@@ -208,6 +204,83 @@ body {
   font-size: 18px;
   color: #ffffff;
   top: 2.7em;
-  right: 2em;
+  right: 0.7em;
+}
+@media (max-width: 768px) {
+  .landing-page {
+    flex-direction: column;
+  }
+  .left-half {
+    flex: none;
+    height: 100vh;
+    /* width: 120vw; */
+    /* order: 1; */
+  }
+  .right-half {
+    flex: none;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    order: 1;
+  }
+  .login-form {
+    width: 80%;
+    height: 60%;
+    padding-right: 0em;
+  }
+  .login-header h1 {
+    font-size: 32px;
+  }
+  .background-image {
+    opacity: 30%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .login-header p {
+    font-size: 14px;
+    color: black;
+  }
+  .form-group {
+    margin-left: 2em;
+    margin-top: 1em;
+  }
+  .input-field {
+    width: 80%;
+    height: 2em;
+    padding: 0.7em;
+    padding-left: 1.4em;
+  }
+  /* padding: 10px; /
+  /* font-family: inherit; */
+  /* font-size: inherit; */
+  .eye-icon {
+    position: absolute;
+    right: 4.5em;
+    top: 1em;
+    cursor: pointer;
+  }
+  .submit-button {
+    width: 80%;
+    height: 3em;
+  }
+  .submit {
+    /* position: relative; */
+    margin-top: 3em;
+    margin-left: -1em;
+  }
+  .fa-arrow-right {
+    top: 2.1em;
+  }
+  .text-overlay {
+    /* position: absolute; */
+    bottom: 1em;
+    /* left: 9em; */
+    /* font-weight: 700; */
+    font-size: 12px;
+  }
 }
 </style>
