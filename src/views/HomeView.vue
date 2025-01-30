@@ -99,7 +99,7 @@ body {
 .text-overlay {
   position: absolute;
   bottom: 20px;
-  margin-left: 6em;
+  margin-left: 1em;
   font-weight: 700;
   font-size: 15px;
 }
@@ -206,7 +206,7 @@ body {
   top: 2.7em;
   right: 0.7em;
 }
-@media (max-width: 768px) {
+@media (max-width: 506px) {
   .landing-page {
     flex-direction: column;
   }
@@ -245,7 +245,7 @@ body {
     color: black;
   }
   .form-group {
-    margin-left: 2em;
+    margin-left: 0.4em;
     margin-top: 1em;
   }
   .input-field {
@@ -254,12 +254,13 @@ body {
     padding: 0.7em;
     padding-left: 1.4em;
   }
-  /* padding: 10px; /
-  /* font-family: inherit; */
-  /* font-size: inherit; */
+  .input-field::placeholder {
+    font-size: 1.1em;
+    padding-left: 0em;
+  }
   .eye-icon {
     position: absolute;
-    right: 4.5em;
+    right: 3em;
     top: 1em;
     cursor: pointer;
   }
@@ -278,7 +279,7 @@ body {
   .text-overlay {
     /* position: absolute; */
     bottom: 1em;
-    /* left: 9em; */
+    margin-left: 3em;
     /* font-weight: 700; */
     font-size: 12px;
   }
